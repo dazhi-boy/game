@@ -1,42 +1,57 @@
 package com.example.game;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
+import android.app.Fragment;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.ClipData;
-import android.content.ClipDescription;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.DragEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageView chat = (ImageView)findViewById(R.id.chat);
+        ImageView message = (ImageView)findViewById(R.id.message);
+        ImageView find = (ImageView)findViewById(R.id.find);
+        ImageView me = (ImageView)findViewById(R.id.me);
 
-        button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "默认的Toast", Toast.LENGTH_SHORT).show();
-            }
-        });
+        chat.setOnClickListener(l);
+        message.setOnClickListener(l);
+        find.setOnClickListener(l);
+        me.setOnClickListener(l);
+
     }
 
-
+    View.OnClickListener l = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            Fragment f = null;
+            switch (v.getId()) {
+                case R.id.chat:
+                    f = new ChatFragment();
+                    break;
+                case R.id.message:
+                    f = new MessageFragment();
+                    break;
+                case R.id.find:
+                    f = new FindFragment();
+                    break;
+                case R.id.me:
+                    f = new MeFragment();
+                    break;
+                default:
+                    break;
+            }
+            ft.replace(R.id.fragment,f);
+            ft.commit();
+        }
+    };
 }
