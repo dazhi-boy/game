@@ -26,6 +26,11 @@ public class MainActivity extends Activity {
         find.setOnClickListener(l);
         me.setOnClickListener(l);
 
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        Fragment f = new ChatFragment();
+        ft.replace(R.id.fragment,f);
+        ft.commit();
     }
 
     View.OnClickListener l = new View.OnClickListener() {
