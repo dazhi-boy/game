@@ -31,6 +31,12 @@
             android:layout_weight="1"
             android:src="@drawable/message"/>
         <ImageView
+            android:id="@+id/game"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/game"/>
+        <ImageView
             android:id="@+id/find"
             android:layout_width="0dp"
             android:layout_height="50dp"

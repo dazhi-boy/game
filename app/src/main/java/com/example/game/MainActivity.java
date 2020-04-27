@@ -20,11 +20,13 @@ public class MainActivity extends Activity {
         ImageView message = (ImageView)findViewById(R.id.message);
         ImageView find = (ImageView)findViewById(R.id.find);
         ImageView me = (ImageView)findViewById(R.id.me);
+        ImageView game = findViewById(R.id.game);
 
         chat.setOnClickListener(l);
         message.setOnClickListener(l);
         find.setOnClickListener(l);
         me.setOnClickListener(l);
+        game.setOnClickListener(l);
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -51,6 +53,9 @@ public class MainActivity extends Activity {
                     break;
                 case R.id.me:
                     f = new MeFragment();
+                    break;
+                case R.id.game:
+                    f = new GameFragment();
                     break;
                 default:
                     break;
