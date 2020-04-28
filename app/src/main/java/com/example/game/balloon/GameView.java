@@ -27,11 +27,8 @@ public class GameView extends View {
         super.onDraw(canvas);
         paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);
-        paint.setColor(Color.RED);
-        paint.setTextSize(80);
-        canvas.drawText("fafsafdsfds",100,100,paint);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.balloon);
-        canvas.drawBitmap(bitmap,null,new RectF(x+200,200,x+400,400),null);
+        canvas.drawBitmap(bitmap,null,new RectF(x,200,x+200,400),null);
 //        x++;
 //        canvas.drawBitmap(bitmap,200,200,paint);
     }

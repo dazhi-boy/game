@@ -10,6 +10,8 @@ import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 
+import com.example.game.R;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -23,6 +25,7 @@ public class BalloonStart extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         gameView = new GameView(this);
+        gameView.setBackgroundResource(R.drawable.bg);
         setContentView(gameView);
         //获取屏幕宽高
         WindowManager windowManager = getWindowManager();
