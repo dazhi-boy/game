@@ -6,9 +6,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import com.example.game.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -23,6 +27,7 @@ public class BalloonStart extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         gameView = new GameView(this);
+        gameView.setBackgroundResource(R.drawable.bg);
         setContentView(gameView);
         //获取屏幕宽高
         WindowManager windowManager = getWindowManager();
@@ -31,7 +36,7 @@ public class BalloonStart extends Activity {
         display.getMetrics(metrics);
         winWidth = metrics.widthPixels;
         winHeight = metrics.heightPixels;
-
+        gameView.setWin(winWidth,winHeight);
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -40,9 +45,25 @@ public class BalloonStart extends Activity {
                 if (gameView.x<0) right = true;
                 if (right) gameView.x+=5;
                 else gameView.x-=5;
+                if (gameView.launch) gameView.rocket_y -=10;
+                if (gameView.rocket_y<0) {
+                    gameView.rocket_y = winHeight-300;
+                    gameView.launch = false;
+                }
+                //判断火箭和气球是否相撞
+                if (Math.abs(gameView.x+100-winWidth/2)<100&&gameView.rocket_y>0&&gameView.rocket_y<400)
+                    gameView.again = true;
+
                 handler.sendEmptyMessage(0x123);
             }
         },0,15);
+        //监控屏幕点击事件
+        gameView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gameView.launch = true;
+            }
+        });
     }
     Handler handler = new Handler(){
         @Override
