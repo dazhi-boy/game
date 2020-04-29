@@ -8,7 +8,6 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -21,13 +20,14 @@ public class BalloonStart extends Activity {
     private GameView gameView;
     private int winWidth;
     private int winHeight;
+    public double speed = 7;
     private boolean right = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         gameView = new GameView(this);
-        gameView.setBackgroundResource(R.drawable.bg);
+        gameView.setBackgroundResource(R.drawable.air);
         setContentView(gameView);
         //获取屏幕宽高
         WindowManager windowManager = getWindowManager();
@@ -36,16 +36,16 @@ public class BalloonStart extends Activity {
         display.getMetrics(metrics);
         winWidth = metrics.widthPixels;
         winHeight = metrics.heightPixels;
-        gameView.setWin(winWidth,winHeight);
+        gameView.setWin(winWidth,winHeight,this);
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 if (gameView.x>winWidth-200) right = false;
                 if (gameView.x<0) right = true;
-                if (right) gameView.x+=5;
-                else gameView.x-=5;
-                if (gameView.launch) gameView.rocket_y -=10;
+                if (right) gameView.x+=speed;
+                else gameView.x-=speed;
+                if (gameView.launch) gameView.rocket_y -=15;
                 if (gameView.rocket_y<0) {
                     gameView.rocket_y = winHeight-300;
                     gameView.launch = false;
