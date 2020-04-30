@@ -8,10 +8,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.example.game.R;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 public class GameView extends View {
     BalloonStart balloonStart;
@@ -67,6 +67,7 @@ public class GameView extends View {
                 sum++;
                 balloonStart.speed+=0.2;
             }
+
         } else {
             //画一个气球
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.balloon);

@@ -51,7 +51,7 @@ public class BalloonStart extends Activity {
                     gameView.launch = false;
                 }
                 //判断火箭和气球是否相撞
-                if (Math.abs(gameView.x+100-winWidth/2)<100&&gameView.rocket_y>0&&gameView.rocket_y<400)
+                if (Math.abs(gameView.x+100-winWidth/2)<80&&gameView.rocket_y>100&&gameView.rocket_y<400)
                     gameView.again = true;
 
                 handler.sendEmptyMessage(0x123);
@@ -64,6 +64,7 @@ public class BalloonStart extends Activity {
                 gameView.launch = true;
             }
         });
+
     }
     Handler handler = new Handler(){
         @Override
