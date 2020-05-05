@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".dodog.DodogStart"></activity>
-        <activity android:name=".balloon.BalloonStart" />
+        <activity android:name=".balloon.BalloonStart"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
