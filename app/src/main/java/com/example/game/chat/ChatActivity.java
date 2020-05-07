@@ -95,7 +95,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 //        doRegisterReceiver();
         //检测通知是否开启
 //        checkNotification(mContext);
-//        findViewById();
+        findViewById();
 //        initView();
     }
 
@@ -120,7 +120,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         chatMessageReceiver = new ChatMessageReceiver();
         IntentFilter filter = new IntentFilter("com.xch.servicecallback.content");
         registerReceiver(chatMessageReceiver, filter);
-    }
+    }*/
 
 
     private void findViewById() {
@@ -129,7 +129,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         et_content = findViewById(R.id.et_content);
         btn_send.setOnClickListener(this);
     }
-    private void initView() {
+/*    private void initView() {
         //监听输入框的变化
         et_content.addTextChangedListener(new TextWatcher() {
             @Override

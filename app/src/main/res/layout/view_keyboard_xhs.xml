@@ -74,7 +74,7 @@
 
         <RelativeLayout
             android:id="@+id/rl_multi_and_send"
-            android:layout_width="98dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -87,30 +87,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="7dp"
+                android:layout_marginLeft="5dp"
                 android:src="@drawable/icon_face_nomal"/>
 
             <!--apps 功能-->
+
+            <!--发送-->
+
             <ImageView
                 android:id="@+id/btn_multimedia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="14dp"
-                android:src="@drawable/btn_multi_bg"/>
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="65dp"
+                android:src="@drawable/btn_multi_bg" />
 
-            <!--发送-->
             <Button
                 android:id="@+id/btn_send"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="9dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/btn_send_bg_disable"
                 android:text="发送"
                 android:textColor="@color/btn_send_textcolor"
-                android:textSize="16sp"
-                android:visibility="gone"/>
+                android:textSize="16sp"/>
         </RelativeLayout>
     </RelativeLayout>
 
