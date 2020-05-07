@@ -2,8 +2,11 @@ package com.example.game;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import android.app.Activity;
 import android.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,8 @@ import android.widget.SimpleAdapter;
 import android.widget.TabHost;
 import android.widget.Toast;
 
+import com.example.game.chat.ChatActivity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +28,7 @@ import java.util.Map;
 public class ChatFragment extends Fragment {
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.chat_fragment,null);
         TabHost tabHost = view.findViewById(android.R.id.tabhost);
         tabHost.setup();
@@ -47,7 +52,9 @@ public class ChatFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Map<String,Object> map = (Map<String, Object>) parent.getItemAtPosition(position);
-                Toast.makeText(listView.getContext(),map.get("name").toString(),Toast.LENGTH_LONG).show();
+//                Toast.makeText(listView.getContext(),map.get("name").toString(),Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(view.getContext(), ChatActivity.class);
+                startActivity(intent);
             }
         });
 
