@@ -51,10 +51,10 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     private Adapter_ChatMessage adapter_chatMessage;
 //    private ChatMessageReceiver chatMessageReceiver;
 
-    /*private ServiceConnection serviceConnection = new ServiceConnection() {
+    private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            Log.e("MainActivity", "服务与活动成功绑定");
+            Log.e("ChatActivity", "服务与活动成功绑定");
             binder = (JWebSocketClientService.JWebSocketClientBinder) iBinder;
             jWebSClientService = binder.getService();
             client = jWebSClientService.client;
@@ -62,10 +62,10 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
-            Log.e("MainActivity", "服务与活动成功断开");
+            Log.e("ChatActivity", "服务与活动成功断开");
         }
     };
-
+/*
     private class ChatMessageReceiver extends BroadcastReceiver{
 
         @Override
@@ -88,9 +88,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_chat);
         mContext=ChatActivity.this;
         //启动服务
-//        startJWebSClientService();
+        startJWebSClientService();
         //绑定服务
-//        bindService();
+        bindService();
         //注册广播
 //        doRegisterReceiver();
         //检测通知是否开启
@@ -102,17 +102,17 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 绑定服务
      */
-    /*private void bindService() {
+    private void bindService() {
         Intent bindIntent = new Intent(mContext, JWebSocketClientService.class);
         bindService(bindIntent, serviceConnection, BIND_AUTO_CREATE);
-    }*/
+    }
     /**
      * 启动服务（websocket客户端服务）
      */
-    /*private void startJWebSClientService() {
+    private void startJWebSClientService() {
         Intent intent = new Intent(mContext, JWebSocketClientService.class);
         startService(intent);
-    }*/
+    }
     /**
      * 动态注册广播
      */

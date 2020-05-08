@@ -37,7 +37,7 @@ public class JWebSocketClientService extends Service {
 
 
     //灰色保活
-    public static class GrayInnerService extends Service {
+    /*public static class GrayInnerService extends Service {
 
         @Override
         public int onStartCommand(Intent intent, int flags, int startId) {
@@ -52,9 +52,9 @@ public class JWebSocketClientService extends Service {
         }
     }
 
-    PowerManager.WakeLock wakeLock;//锁屏唤醒
+    PowerManager.WakeLock wakeLock;//锁屏唤醒*/
     //获取电源锁，保持该服务在屏幕熄灭时仍然获取CPU时，保持运行
-    @SuppressLint("InvalidWakeLockTag")
+    /*@SuppressLint("InvalidWakeLockTag")
     private void acquireWakeLock()
     {
         if (null == wakeLock)
@@ -66,7 +66,7 @@ public class JWebSocketClientService extends Service {
                 wakeLock.acquire();
             }
         }
-    }
+    }*/
 
     @Nullable
     @Override
@@ -86,7 +86,7 @@ public class JWebSocketClientService extends Service {
         super.onCreate();
     }
 
-    @Override
+    /*@Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         //初始化websocket
         initSocketClient();
@@ -108,7 +108,7 @@ public class JWebSocketClientService extends Service {
 
         acquireWakeLock();
         return START_STICKY;
-    }
+    }*/
 
 
     @Override
@@ -208,9 +208,9 @@ public class JWebSocketClientService extends Service {
                 wl.acquire();  //点亮屏幕
                 wl.release();  //任务结束后释放
             }
-            sendNotification(content);
+//            sendNotification(content);
         } else {
-            sendNotification(content);
+//            sendNotification(content);
         }
     }
 
@@ -219,7 +219,7 @@ public class JWebSocketClientService extends Service {
      *
      * @param content
      */
-    private void sendNotification(String content) {
+    /*private void sendNotification(String content) {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -238,7 +238,7 @@ public class JWebSocketClientService extends Service {
                 .setContentIntent(pendingIntent)
                 .build();
         notifyManager.notify(1, notification);//id要保证唯一
-    }
+    }*/
 
     //    -------------------------------------websocket心跳检测------------------------------------------------
     private static final long HEART_BEAT_RATE = 10 * 1000;//每隔10秒进行一次对长连接的心跳检测
