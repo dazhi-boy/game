@@ -96,7 +96,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         //检测通知是否开启
 //        checkNotification(mContext);
         findViewById();
-//        initView();
+        initView();
     }
 
     /**
@@ -129,7 +129,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         et_content = findViewById(R.id.et_content);
         btn_send.setOnClickListener(this);
     }
-/*    private void initView() {
+    private void initView() {
         //监听输入框的变化
         et_content.addTextChangedListener(new TextWatcher() {
             @Override
@@ -140,9 +140,11 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (et_content.getText().toString().length() > 0) {
-                    btn_send.setVisibility(View.VISIBLE);
+//                    btn_send.setVisibility(View.VISIBLE);
+                    btn_send.setClickable(true);
                 } else {
-                    btn_send.setVisibility(View.GONE);
+//                    btn_send.setVisibility(View.GONE);
+                    btn_send.setClickable(false);
                 }
             }
 
@@ -151,11 +153,11 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-    }*/
+    }
 
     @Override
     public void onClick(View view) {
-        /*switch (view.getId()) {
+        switch (view.getId()) {
             case R.id.btn_send:
                 String content = et_content.getText().toString();
                 if (content.length() <= 0) {
@@ -163,8 +165,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                     return;
                 }
 
-                if (client != null && client.isOpen()) {
-                    jWebSClientService.sendMsg(content);
+//                if (client != null && client.isOpen()) {
+//                    jWebSClientService.sendMsg(content);
 
                     //暂时将发送的消息加入消息列表，实际以发送成功为准（也就是服务器返回你发的消息时）
                     ChatMessage chatMessage=new ChatMessage();
@@ -175,20 +177,20 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                     chatMessageList.add(chatMessage);
                     initChatMsgListView();
                     et_content.setText("");
-                } else {
-                    Util.showToast(mContext, "连接已断开，请稍等或重启App哟");
-                }
+//                } else {
+//                    Util.showToast(mContext, "连接已断开，请稍等或重启App哟");
+//                }
                 break;
             default:
                 break;
-        }*/
+        }
     }
-/*
+
     private void initChatMsgListView(){
         adapter_chatMessage = new Adapter_ChatMessage(mContext, chatMessageList);
         listView.setAdapter(adapter_chatMessage);
         listView.setSelection(chatMessageList.size());
-    }*/
+    }
 
 
     /**
