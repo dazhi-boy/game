@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".chat.ChatActivity"></activity>
+        <service android:name=".webSocket.JWebSocketClientService"></service>
+        <activity android:name=".testactivity.TestActivity"></activity>
+        <activity android:name=".chat.ChatActivity" />
         <activity android:name=".dodog.DodogStart" />
         <activity android:name=".balloon.BalloonStart" />
         <activity android:name=".MainActivity">

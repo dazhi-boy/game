@@ -21,6 +21,7 @@ import androidx.core.app.NotificationCompat;
 import com.example.game.MainActivity;
 import com.example.game.R;
 
+
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
@@ -37,7 +38,7 @@ public class JWebSocketClientService extends Service {
 
 
     //灰色保活
-    /*public static class GrayInnerService extends Service {
+    public static class GrayInnerService extends Service {
 
         @Override
         public int onStartCommand(Intent intent, int flags, int startId) {
@@ -52,9 +53,9 @@ public class JWebSocketClientService extends Service {
         }
     }
 
-    PowerManager.WakeLock wakeLock;//锁屏唤醒*/
+    PowerManager.WakeLock wakeLock;//锁屏唤醒
     //获取电源锁，保持该服务在屏幕熄灭时仍然获取CPU时，保持运行
-    /*@SuppressLint("InvalidWakeLockTag")
+    @SuppressLint("InvalidWakeLockTag")
     private void acquireWakeLock()
     {
         if (null == wakeLock)
@@ -66,7 +67,7 @@ public class JWebSocketClientService extends Service {
                 wakeLock.acquire();
             }
         }
-    }*/
+    }
 
     @Nullable
     @Override
@@ -82,15 +83,11 @@ public class JWebSocketClientService extends Service {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-    }
-
-    /*@Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         //初始化websocket
         initSocketClient();
         mHandler.postDelayed(heartBeatRunnable, HEART_BEAT_RATE);//开启心跳检测
+/*
 
         //设置service为前台服务，提高优先级
         if (Build.VERSION.SDK_INT < 18) {
@@ -105,17 +102,18 @@ public class JWebSocketClientService extends Service {
             //Android7.0以上app启动后通知栏会出现一条"正在运行"的通知
             startForeground(GRAY_SERVICE_ID, new Notification());
         }
+*/
 
-        acquireWakeLock();
+//        acquireWakeLock();
         return START_STICKY;
-    }*/
+    }
 
 
-    @Override
+    /*@Override
     public void onDestroy() {
         closeConnect();
         super.onDestroy();
-    }
+    }*/
 
     /**
      * 初始化websocket连接
@@ -159,7 +157,6 @@ public class JWebSocketClientService extends Service {
                 }
             }
         }.start();
-
     }
 
     /**
@@ -177,7 +174,7 @@ public class JWebSocketClientService extends Service {
     /**
      * 断开连接
      */
-    private void closeConnect() {
+    /*private void closeConnect() {
         try {
             if (null != client) {
                 client.close();
@@ -187,7 +184,7 @@ public class JWebSocketClientService extends Service {
         } finally {
             client = null;
         }
-    }
+    }*/
 
     //    -----------------------------------消息通知--------------------------------------------------------
 

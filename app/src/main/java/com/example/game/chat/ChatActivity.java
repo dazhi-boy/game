@@ -11,6 +11,7 @@ import com.example.game.webSocket.ChatMessage;
 import com.example.game.webSocket.JWebSocketClient;
 import com.example.game.webSocket.JWebSocketClientService;
 import com.example.game.webSocket.Util;
+import com.google.gson.Gson;
 
 import android.annotation.TargetApi;
 import android.app.AppOpsManager;
@@ -49,7 +50,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_send;
     private List<ChatMessage> chatMessageList = new ArrayList<>();//消息列表
     private Adapter_ChatMessage adapter_chatMessage;
-//    private ChatMessageReceiver chatMessageReceiver;
+    private ChatMessageReceiver chatMessageReceiver;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -65,7 +66,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             Log.e("ChatActivity", "服务与活动成功断开");
         }
     };
-/*
+
     private class ChatMessageReceiver extends BroadcastReceiver{
 
         @Override
@@ -79,7 +80,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             chatMessageList.add(chatMessage);
             initChatMsgListView();
         }
-    }*/
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         //绑定服务
         bindService();
         //注册广播
-//        doRegisterReceiver();
+        doRegisterReceiver();
         //检测通知是否开启
 //        checkNotification(mContext);
         findViewById();
@@ -116,11 +117,11 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 动态注册广播
      */
-    /*private void doRegisterReceiver() {
+    private void doRegisterReceiver() {
         chatMessageReceiver = new ChatMessageReceiver();
         IntentFilter filter = new IntentFilter("com.xch.servicecallback.content");
         registerReceiver(chatMessageReceiver, filter);
-    }*/
+    }
 
 
     private void findViewById() {
@@ -165,21 +166,22 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                     return;
                 }
 
-//                if (client != null && client.isOpen()) {
-//                    jWebSClientService.sendMsg(content);
-
+                if (client != null && client.isOpen()) {
                     //暂时将发送的消息加入消息列表，实际以发送成功为准（也就是服务器返回你发的消息时）
                     ChatMessage chatMessage=new ChatMessage();
                     chatMessage.setContent(content);
                     chatMessage.setIsMeSend(1);
                     chatMessage.setIsRead(1);
                     chatMessage.setTime(System.currentTimeMillis()+"");
+                    chatMessage.setOwn("lisi");
+                    chatMessage.setOther("lisi");
                     chatMessageList.add(chatMessage);
+                    jWebSClientService.sendMsg(new Gson().toJson(chatMessage));//发送
                     initChatMsgListView();
                     et_content.setText("");
-//                } else {
-//                    Util.showToast(mContext, "连接已断开，请稍等或重启App哟");
-//                }
+                } else {
+                    Util.showToast(mContext, "连接已断开，请稍等或重启App哟");
+                }
                 break;
             default:
                 break;

@@ -9,6 +9,7 @@ import org.java_websocket.handshake.ServerHandshake;
 import java.net.URI;
 
 public class JWebSocketClient extends WebSocketClient {
+
     public JWebSocketClient(URI serverUri) {
         super(serverUri, new Draft_6455());
     }
